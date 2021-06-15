@@ -167,3 +167,4 @@ C:\Users\allan\source\repos\JokesApp\obj\Debug\netcoreapp3.1\Razor\Views\Jokes\D
 C:\Users\allan\source\repos\JokesApp\obj\Debug\netcoreapp3.1\Razor\Views\Jokes\Details.cshtml.g.cs
 C:\Users\allan\source\repos\JokesApp\obj\Debug\netcoreapp3.1\Razor\Views\Jokes\Edit.cshtml.g.cs
 C:\Users\allan\source\repos\JokesApp\obj\Debug\netcoreapp3.1\Razor\Views\Jokes\Index.cshtml.g.cs
+C:\Users\allan\source\repos\JokesApp\obj\Debug\netcoreapp3.1\Razor\Views\Jokes\ShowSearchForm.cshtml.g.cs
