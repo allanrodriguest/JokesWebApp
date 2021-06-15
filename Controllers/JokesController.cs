@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using JokesApp.Data;
 using JokesApp.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace JokesApp.Controllers
 {
@@ -24,10 +25,15 @@ namespace JokesApp.Controllers
         {
             return View(await _context.Joke.ToListAsync());
         }
-         // GET: Jokes/ShowSearchForm
+        // GET: Jokes/ShowSearchForm
         public async Task<IActionResult> ShowSearchForm()
-         {
+        {
            return View();
+        }
+        // POST: Jokes/ShowSearchResults
+         public async Task<IActionResult> ShowSearchResults(String SearchPhrase)
+         {
+            return View("Index", await _context.Joke.Where( j => j.JokeQuestion.Contains(SearchPhrase)).ToListAsync());
          }
       // GET: Jokes/Details/5
       public async Task<IActionResult> Details(int? id)
@@ -48,15 +54,17 @@ namespace JokesApp.Controllers
         }
 
         // GET: Jokes/Create
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Jokes/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+      // POST: Jokes/Create
+      // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+      // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      [Authorize]
+      [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,JokeQuestion,JokeAnswer")] Joke joke)
         {
@@ -85,10 +93,11 @@ namespace JokesApp.Controllers
             return View(joke);
         }
 
-        // POST: Jokes/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to, for 
-        // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+      // POST: Jokes/Edit/5
+      // To protect from overposting attacks, enable the specific properties you want to bind to, for 
+      // more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+      [Authorize]
+      [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,JokeQuestion,JokeAnswer")] Joke joke)
         {
@@ -138,8 +147,9 @@ namespace JokesApp.Controllers
             return View(joke);
         }
 
-        // POST: Jokes/Delete/5
-        [HttpPost, ActionName("Delete")]
+      // POST: Jokes/Delete/5
+      [Authorize]
+      [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
