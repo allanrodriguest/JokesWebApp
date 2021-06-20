@@ -2,7 +2,7 @@
 
 ## 💻 Project
 
-Create a Web Database App in ASP.NET Core, with the learning goals:
+Create a Web Database App in ASP.NET Core, with the following:
 
 - Use the MVC (Model View Controller) design pattern.
 - Configure database tables using the Entity Framework.
